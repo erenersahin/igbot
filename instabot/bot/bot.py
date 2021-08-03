@@ -832,7 +832,7 @@ class Bot(object):
         return upload_album(self, photos, caption, upload_id, from_video, options, user_tags)
 
     # video
-    def upload_video(self, video, caption="", thumbnail=None, options={}):
+    def upload_video(self, video, duration_limit=60, caption="", thumbnail=None, options={}):
         """Upload video to Instagram
 
         @param video      Path to video file (String)
@@ -845,7 +845,7 @@ class Bot(object):
 
         @return           Object with Instagram upload state (or False)
         """
-        return upload_video(self, video, caption, thumbnail, options)
+        return upload_video(self, video, duration_limit, caption, thumbnail, options)
 
     def download_video(
         self, media_id, folder="videos", filename=None, save_description=False

@@ -1,7 +1,7 @@
 import os
 
 
-def upload_video(self, video, caption="", thumbnail=None, options={}):
+def upload_video(self, video, duration_limit, caption="", thumbnail=None, options={}):
     """Upload video to Instagram
 
     @param video      Path to video file (String)
@@ -17,7 +17,7 @@ def upload_video(self, video, caption="", thumbnail=None, options={}):
     self.small_delay()
     self.logger.info("Started uploading '{video}'".format(video=video))
     result = self.api.upload_video(
-        video, caption=caption, thumbnail=thumbnail, options=options
+        video,duration_limit=duration_limit, caption=caption, thumbnail=thumbnail, options=options
     )
     if not result:
         self.logger.info("Video '{}' is not {} .".format(video, "uploaded"))

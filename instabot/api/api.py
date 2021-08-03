@@ -856,7 +856,7 @@ class API(object):
 
     # ====== VIDEO METHODS ====== #
     def upload_video(
-        self, video, caption=None, upload_id=None, thumbnail=None, options={}
+        self, video, d_lim, caption=None, upload_id=None, thumbnail=None, options={}
     ):
         """Upload video to Instagram
 
@@ -874,7 +874,7 @@ class API(object):
         @return           Object with state of uploading to
                           Instagram (or False)
         """
-        return upload_video(self, video, caption, upload_id, thumbnail, options)
+        return upload_video(self, video, d_lim, caption, upload_id, thumbnail, options)
 
     def download_video(self, media_id, filename, media=False, folder="video"):
         return download_video(self, media_id, filename, media, folder)

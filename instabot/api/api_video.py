@@ -85,7 +85,7 @@ def get_video_info(filename):
     return res
 
 
-def upload_video(self, video, d_lim=60, caption=None, upload_id=None, thumbnail=None, options={}):
+def upload_video(self, video, d_lim, caption=None, upload_id=None, thumbnail=None, options={}):
     """Upload video to Instagram
     @param video      Path to video file (String)
     @param caption    Media description (String)
