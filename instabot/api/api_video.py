@@ -85,7 +85,7 @@ def get_video_info(filename):
     return res
 
 
-def upload_video(self, video, d_lim, caption=None, upload_id=None, thumbnail=None, options={}):
+def upload_video(self, video, duration_limit=None, caption=None, upload_id=None, thumbnail=None, options={}):
     """Upload video to Instagram
     @param video      Path to video file (String)
     @param caption    Media description (String)
@@ -105,7 +105,7 @@ def upload_video(self, video, d_lim, caption=None, upload_id=None, thumbnail=Non
     )
     if upload_id is None:
         upload_id = str(int(time.time() * 1000))
-    video, thumbnail, width, height, duration = resize_video(video, d_lim, thumbnail)
+    video, thumbnail, width, height, duration = resize_video(video, duration_limit, thumbnail)
     waterfall_id = str(uuid4())
     # upload_name example: '1576102477530_0_7823256191'
     upload_name = "{upload_id}_0_{rand}".format(
@@ -223,7 +223,7 @@ def configure_video(
     return self.send_request("media/configure/?video=1", data, with_signature=True)
 
 
-def resize_video(fname, d_lim, thumbnail=None):
+def resize_video(fname, duration_limit, thumbnail=None):
     from math import ceil
 
     try:
@@ -282,9 +282,9 @@ def resize_video(fname, d_lim, thumbnail=None):
             print("Resizing video")
             vid = vid.resize(width=1080)
     (w, h) = vid.size
-    if vid.duration > d_lim:
-        print("Cutting video to {lim} sec from start".format(lim=d_lim))
-        vid = vid.subclip(0, d_lim)
+    if vid.duration > duration_limit:
+        print("Cutting video to {lim} sec from start".format(lim=duration_limit))
+        vid = vid.subclip(0, duration_limit)
     new_fname = "{fname}.CONVERTED.mp4".format(fname=fname)
     print("Saving new video w:{w} h:{h} to `{f}`".format(w=w, h=h, f=new_fname))
     vid.write_videofile(new_fname, codec="libx264", audio_codec="aac")

@@ -1,7 +1,7 @@
 import os
 
 
-def upload_video(self, video, duration_limit, caption="", thumbnail=None, options={}):
+def upload_video(self, video, duration_limit=60, caption="", thumbnail=None, options={}):
     """Upload video to Instagram
 
     @param video      Path to video file (String)
