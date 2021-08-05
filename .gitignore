@@ -9,6 +9,8 @@ secret.txt
 
 # Photos
 examples/photos/
+imgs/
+dene.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

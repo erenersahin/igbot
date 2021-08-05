@@ -85,7 +85,15 @@ def get_video_info(filename):
     return res
 
 
-def upload_video(self, video, d_lim=60, caption=None, upload_id=None, thumbnail=None, options={}):
+def upload_video(
+    self,
+    video,
+    # duration_limit=60,
+    caption=None,
+    upload_id=None,
+    thumbnail=None,
+    options={},
+):
     """Upload video to Instagram
     @param video      Path to video file (String)
     @param caption    Media description (String)
@@ -105,7 +113,7 @@ def upload_video(self, video, d_lim=60, caption=None, upload_id=None, thumbnail=
     )
     if upload_id is None:
         upload_id = str(int(time.time() * 1000))
-    video, thumbnail, width, height, duration = resize_video(video, d_lim, thumbnail)
+    video, thumbnail, width, height, duration = resize_video(video, thumbnail)
     waterfall_id = str(uuid4())
     # upload_name example: '1576102477530_0_7823256191'
     upload_name = "{upload_id}_0_{rand}".format(
@@ -241,6 +249,7 @@ def resize_video(fname, d_lim, thumbnail=None):
     print("Analizing `{fname}`".format(fname=fname))
     h_lim = {"w": 90.0, "h": 47.0}
     v_lim = {"w": 4.0, "h": 5.0}
+    d_lim = 60
     vid = mp.VideoFileClip(fname)
     (w, h) = vid.size
     deg = vid.rotation
